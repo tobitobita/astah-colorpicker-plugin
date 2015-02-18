@@ -1,5 +1,6 @@
 package dsk.colorpicker.plugin;
 
+import java.awt.Dimension;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.ExecutionException;
@@ -15,23 +16,16 @@ public class ColorPickerWindow extends JFrame {
 
     private static final String FXML_FILE = "ColorPicker.fxml";
 
-    private boolean initFx;
-
-    private ColorPickerController controller;
-
     public ColorPickerWindow() {
         this.initComponents();
     }
 
     private void initComponents() {
-        if (initFx) {
-            return;
-        }
+        this.setSize(new Dimension(320, 240));
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         final JFXPanel panel = new JFXPanel();
         this.add(panel);
         final ClassLoader classLoader = this.getClass().getClassLoader();
-        this.initFx = true;
         FutureTask<Void> futureTask = new FutureTask<>(() -> {
             panel.setScene(createScene(classLoader));
             return null;
@@ -45,14 +39,14 @@ public class ColorPickerWindow extends JFrame {
     }
 
     private Scene createScene(ClassLoader classLoader) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setClassLoader(classLoader);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setClassLoader(classLoader);
         // TODO
         //loader.setResources(ResourceBundle.getBundle("fx_message"));
         try (InputStream is = classLoader.getResource(FXML_FILE).openConnection().getInputStream()) {
-            loader.load(is);
-            this.controller = loader.getController();
-            Parent root = loader.getRoot();
+            fxmlLoader.load(is);
+//            ColorPickerController controller = loader.getController();
+            Parent root = fxmlLoader.getRoot();
             Scene scene = new Scene(root);
             return scene;
         }
