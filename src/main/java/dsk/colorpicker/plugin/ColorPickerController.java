@@ -3,6 +3,7 @@ package dsk.colorpicker.plugin;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -24,26 +25,21 @@ public class ColorPickerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.m.redProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-            System.out.println("model");
-            label.setText(newValue.toString());
-            slider.setValue(newValue.doubleValue());
-            text.setText(newValue.toString());
-        });
-        this.slider.valueProperty().addListener((ObservableValue<? extends Number> observable, Number oldValue, Number newValue) -> {
-            System.out.println("slider");
-            m.setRed(newValue.intValue());
-        });
-        this.text.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            System.out.println("text");
-            try {
-                int value = Integer.parseInt(newValue);
-                if (value >= 0 || value <= 100) {
-                    m.setRed(value);
-                }
-            } catch (NumberFormatException e) {
-                System.out.println(e.getLocalizedMessage());
+        this.m.redProperty().bindBidirectional(this.slider.valueProperty());
+        this.label.textProperty().bind(this.m.redProperty().asString());
+    }
+
+    @FXML
+    protected void textAction(ActionEvent event) {
+        System.out.println("text");
+        // TODO Bean validateと組み合わせるはず。
+        try {
+            int value = Integer.parseInt(text.getText());
+            if (value >= 0 || value <= 100) {
+                m.setRed(value);
             }
-        });
+        } catch (NumberFormatException e) {
+            System.out.println(e.getLocalizedMessage());
+        }
     }
 }
