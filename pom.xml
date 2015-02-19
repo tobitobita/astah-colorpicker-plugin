@@ -9,11 +9,11 @@
         <astah.edition>professional</astah.edition>
     </properties>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>dsk</groupId>
-    <artifactId>colorpicker</artifactId>
+    <groupId>dsk.astah</groupId>
+    <artifactId>dsk.astah.colorpicker</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>colorpicker</name>
+    <name>astah-colorpicker</name>
     <description>%bundle.description</description>
     <pluginRepositories>
         <pluginRepository>
