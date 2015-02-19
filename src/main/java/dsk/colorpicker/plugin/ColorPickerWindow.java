@@ -1,19 +1,24 @@
 package dsk.colorpicker.plugin;
 
 import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Window;
 import java.io.IOException;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
-public class ColorPickerWindow extends JFrame {
+public class ColorPickerWindow extends JDialog {
 
-    public ColorPickerWindow() {
+    public ColorPickerWindow(Window owner) {
+        super(owner);
         this.initComponents();
     }
 
     private void initComponents() {
-        this.setSize(new Dimension(320, 240));
+        this.setResizable(false);
+        this.setSize(new Dimension(244, 180));
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         final JFXPanel panel = new JFXPanel();
         this.add(panel);
@@ -28,6 +33,17 @@ public class ColorPickerWindow extends JFrame {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                ColorPickerWindow window = new ColorPickerWindow(null);
+                window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                window.setVisible(true);
             }
         });
     }
