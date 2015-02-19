@@ -1,4 +1,4 @@
-package dsk.colorpicker.plugin;
+package dsk.colorpicker.plugin.ui;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -17,6 +17,7 @@ public class ColorPickerWindow extends JDialog {
     }
 
     private void initComponents() {
+        this.setTitle("カラー設定");
         this.setResizable(false);
         this.setSize(new Dimension(244, 180));
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);

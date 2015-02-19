@@ -1,4 +1,4 @@
-package dsk.colorpicker.plugin;
+package dsk.colorpicker.plugin.ui;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class ColorPickerApplication extends Application {
     
-    private static final String FXML_FILE = "ColorPicker.fxml";
+    private static final String FXML_FILE = "dsk/colorpicker/plugin/ui/ColorPicker.fxml";
     
     public Scene createScene(ClassLoader classLoader) throws IOException {
         if (classLoader == null) {

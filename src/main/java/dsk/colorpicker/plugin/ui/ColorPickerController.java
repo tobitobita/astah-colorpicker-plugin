@@ -1,4 +1,4 @@
-package dsk.colorpicker.plugin;
+package dsk.colorpicker.plugin.ui;
 
 import com.change_vision.jude.api.inf.AstahAPI;
 import com.change_vision.jude.api.inf.editor.TransactionManager;
@@ -69,21 +69,18 @@ public class ColorPickerController implements Initializable {
                         if (orgColor != null && !presentation.getProperty(FILL_COLOR).equals("null") && enableFill) {
                             System.out.println(presentation.getProperty(FILL_COLOR));
                             String color = fill.toString().substring(0, 8);
-                            System.out.printf("FILL: %s\n", color);
                             presentation.setProperty(FILL_COLOR, color);
                         }
                         orgColor = presentation.getProperty(FONT_COLOR);
                         if (orgColor != null && !presentation.getProperty(FONT_COLOR).equals("null") && enableText) {
                             System.out.println(presentation.getProperty(FONT_COLOR));
                             String color = text.toString().substring(0, 8);
-                            System.out.printf("TEXT: %s\n", color);
                             presentation.setProperty(FONT_COLOR, color);
                         }
                         orgColor = presentation.getProperty(LINE_COLOR);
                         if (orgColor != null && !presentation.getProperty(LINE_COLOR).equals("null") && enableLine) {
                             System.out.println(presentation.getProperty(LINE_COLOR));
                             String color = line.toString().substring(0, 8);
-                            System.out.printf("LINE: %s\n", color);
                             presentation.setProperty(LINE_COLOR, color);
                         }
                     }
